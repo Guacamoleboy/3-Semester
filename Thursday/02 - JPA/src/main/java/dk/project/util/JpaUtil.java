@@ -7,11 +7,7 @@ import jakarta.persistence.EntityManagerFactory;
 public class JpaUtil {
 
     // Attributes
-
-    // _______________________________________________________
-
-    private static final EntityManagerFactory emf =
-            HibernateConfig.getEntityManagerFactory();
+    private static final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
 
     // _______________________________________________________
 
