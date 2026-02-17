@@ -5,6 +5,7 @@ import app.dto.CityInfoDTO;
 import app.dto.CityInfoResponseDTO;
 import app.exception.ApiException;
 import app.exception.ResourceNotFoundException;
+import app.util.ValidationUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -54,15 +55,11 @@ public class CityService {
                 try {
 
                     // JSON to CityInfoResponseDTO (API response wrapper)
+                    // public <T> T readValue(String content, Class<T> valueType) throws JsonProcessingException, JsonMappingException
                     CityInfoResponseDTO cityInfoResponseDTO = objectMapper.readValue(response.body(), CityInfoResponseDTO.class);
 
                     // Validation on List<CityInfoDTO> in our wrapper
-                    if (cityInfoResponseDTO.getResults() == null || cityInfoResponseDTO.getResults().isEmpty()) {
-                        throw new ResourceNotFoundException("CityInfoDTO (CityInfoResponseDTO.results)", cityName);
-                    }
-
-                    // Return first result found in case there's multiple
-                    return cityInfoResponseDTO.getResults().get(0);
+                    return ValidationUtil.requireFirst(cityInfoResponseDTO.getResults(), new ResourceNotFoundException("CityInfoDTO (CityInfoResponseDTO.results)", cityName));
 
                 } catch (Exception e) {
                     // JSON Parse error handle

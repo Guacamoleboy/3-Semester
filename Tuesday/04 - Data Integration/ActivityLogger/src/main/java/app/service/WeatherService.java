@@ -50,7 +50,16 @@ public class WeatherService {
 
                 // The call
                 try {
-                    return objectMapper.readValue(response.body(), WeatherInfoDTO.class);
+
+                    // public <T> T readValue(String content, Class<T> valueType) throws JsonProcessingException, JsonMappingException
+                    WeatherInfoDTO weatherInfoDTO = objectMapper.readValue(response.body(), WeatherInfoDTO.class);
+
+                    // Validation
+                    if (weatherInfoDTO == null || weatherInfoDTO.getCurrent() == null || weatherInfoDTO.getCurrentUnits() == null) {
+                        throw new ApiException("Weather API incomplete data");
+                    }
+
+                    return weatherInfoDTO;
                 } catch (Exception e) {
                     throw new ApiException("Failed parsing API | CityService: ", e);
                 }
