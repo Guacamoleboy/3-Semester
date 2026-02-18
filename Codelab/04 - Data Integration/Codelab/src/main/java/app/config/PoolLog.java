@@ -10,6 +10,7 @@ public class PoolLog extends ThreadPoolExecutor {
     private static final Logger logger = LoggerFactory.getLogger(PoolLog.class);
 
     // __________________________________________________________________
+    // Using ThreadPoolExecutor is using ExecutorService on a sub level, so super() goes to ExecutorService!
 
     public PoolLog(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
