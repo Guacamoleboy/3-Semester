@@ -1,0 +1,32 @@
+# -------- JAVA / Maven Build -------- #
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# -------- IntelliJ -------- #
+.idea/
+*.iml
+out/
+gen/
+*.ipr
+*.iws
+
+# -------- Environment Variables -------- #
+.env.*
+.env
+Codelab/src/main/resources/config.properties
+
+# -------- DB -------- #
+*.sql
+*.dump
+.db_data/
+
+# -------- OS Files (Operation System) -------- #
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -------- Log Files -------- #
+*.log

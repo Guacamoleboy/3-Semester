@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:7070
+
+### GET request to example server
+GET {{baseUrl}}/
+
+### POST
+POST {{baseUrl}}/
