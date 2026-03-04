@@ -11,8 +11,8 @@ public class DotEnv {
 
     // Attributes
     private static final Dotenv dotenv;
-    private static final String TMDB_KEY;
     private static final String environment = "development";
+    private static final String fileName;
 
     // _________________________________________________
     // Usage:
@@ -27,29 +27,25 @@ public class DotEnv {
         // load .env.test. If there's no test available it'll fall back to our environement attribute.
 
         String environmentLoad = System.getProperty("set.env", environment);
-        String filename = ".env." + environmentLoad;
+        fileName = ".env." + environmentLoad;
 
         // Load (I/O) the .env.development file
         dotenv = Dotenv.configure()
                 .directory("src/main/resources")
-                .filename(filename)
+                .filename(fileName)
                 .ignoreIfMissing()
                 .load();
-
-        // Set value(s)
-        TMDB_KEY = dotenv.get("TMDB_KEY");
-        // .... more?
-
-        if (TMDB_KEY == null) {
-            System.out.println("No TMDB_KEY found in: src/main/resources/" + filename);
-        }
 
     }
 
     // _________________________________________________
 
-    public static String getTmdbKey(){
-        return TMDB_KEY;
+    public static String get(String key) {
+        String row = dotenv.get(key);
+        if (row == null){
+            System.out.println("No value found in: " + fileName + ".");
+        }
+        return row;
     }
 
 }

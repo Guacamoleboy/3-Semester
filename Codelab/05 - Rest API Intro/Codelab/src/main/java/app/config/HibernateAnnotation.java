@@ -1,5 +1,7 @@
 package app.config;
 
+import app.entity.Author;
+import app.entity.Poem;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateAnnotation {
@@ -9,7 +11,8 @@ public class HibernateAnnotation {
     // ______________________________________________________________________
 
     public static void registerEntities(Configuration configuration) {
-        // configuration.addAnnotatedClass(Cast.class);
+        configuration.addAnnotatedClass(Poem.class);
+        configuration.addAnnotatedClass(Author.class);
     }
 
 }

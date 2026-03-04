@@ -1,7 +1,22 @@
 @baseUrl = http://localhost:7070
 
-### GET request to example server
+### GET status for poem endpoint                                                    - [NOT DONE]
 GET {{baseUrl}}/
 
-### POST
-POST {{baseUrl}}/
+### GET request to get all poems                                                    - [DONE]
+GET {{baseUrl}}/poem/all
+
+### POST creates a new poem                                                         - [NOT DONE]
+POST {{baseUrl}}/poem
+
+### GET a specific ID                                                               - [DONE]
+GET {{baseUrl}}/poem/{id}
+
+### PUT to update a specific ID                                                     - [NOT DONE]
+PUT {{baseUrl}}/poem/{id}
+
+### DELETE to delete a specific poem                                                - [NOT DONE]
+DELETE {{baseUrl}}/poem/{id}
+
+### DELETE to delete all poems (requires auth)                                      - [NOT DONE]
+DELETE {{baseUrl}}/poem/all
